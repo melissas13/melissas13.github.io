@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang = "en-US">
+<head>
+	<meta charset ="UTF-8">
+	<link rel = "stylesheet" href = "stylesheet.css"/>
+	<title> Internship Track Quiz </title>
+	<!-- Melissa Spencer Web Development Intern -->
+	<!-- begin quiz script -->
+	<script>
+	function finish() {
+		var ext = '.html';
+		var results = new Array("none","WebDevelopment-WebContent","WebSecurity","Research","Writing-Editing","Podcast","Analytics","GraphicDesign-MotionGraphics","HumanResources","DepartmentHead","ExternalAffairs","Accessibility","SocialMedia","PhotoFinders","SpecialProjects");
+		var nums = new Array(15);
+		for(var i = 0; i < nums.length; i++) nums[i] = 0;
+		for(var i = 1; i <= 13; i++) 
+		{
+			var q = document.forms['quiz'].elements['question_'+i];
+			if(q[0].type=='checkbox') 
+			{
+				var n = 0;
+			}
+			for(var j = 0; j < q.length; j++) 
+			{
+				if(q[j].checked) 
+				{
+					var a = q[j].value.split(',');
+					for(var k = 0; k < a.length; k++) 
+					{
+						nums[a[k]]++;
+					}
+					if(q[j].type=='radio') break;
+					else n++;
+				}
+				if(j == q.length-1&&q[j].type=='radio') {nums[0]++;}
+			}
+			if(q[0].type=='checkbox'&&((document.forms['quiz'].elements['question_'+i+'_min']&&n<document.forms['quiz'].elements['question_'+i+'_min'].value)||(document.forms['quiz'].elements['question_'+i+'_max']&&n>document.forms['quiz'].elements['question_'+i+'_max'].value))) nums[0]++;
+		}
+		var j = new Array('0');
+		for (i in nums) if(nums[i]>nums[j[0]]){j=new Array(''+i);} else if(nums[i]==nums[j[0]])j[j.length] = i;
+		//var o = '';for(var i in results)o+=results[i]+'='+nums[i]+'\n';
+		//alert(o);
+		if(nums[0]!=0) 
+		{
+			alert('You need to answer '+nums[0]+' questions!');
+		}
+		else if(j[0]==0) 
+		{
+			alert('No result could be determined.');
+		}
+		else 
+		{
+			location = results[j[0]]+ext;
+		}
+	}
+	</script>
+	<!-- end quiz script -->             
+</head>
+<body>
+	<h1> Which Internship Track Is Right For You? </h1>
+	<hr>
+		<form name="quiz" action="javascript:finish();">
+		<!-- Question 1 -->
+		<fieldset style="width:620px;">
+		<legend><strong>Out of these fields, I have the most experience in:</strong> </legend>
+		<input name="question_1" type="radio" value="1,2,6"> Science & Technology <br>
+		<input name="question_1" type="radio" value="8,9,10"> Management <br>
+		<input name="question_1" type="radio" value="3,4,5,11,12,13,14"> Writing <br>
+		<input name="question_1" type="radio" value="7,13"> Art & Design <br>
+		</fieldset>
+		
+		<!-- Question 2 -->
+		<br><br><fieldset style="width:620px;">
+		<legend><strong>When I'm working, I am: </strong> </legend>
+		<input name="question_2" type="radio" value="1,2,6,11"> Solving problems <br>
+		<input name="question_2" type="radio" value="4,5,7,12,14"> Creating something new <br>
+		<input name="question_2" type="radio" value="3,4,9"> Checking other people's work <br>
+		<input name="question_2" type="radio" value="8,9,10"> Managing tasks/individuals <br>
+		</fieldset>
+		
+		<!-- Question 3 -->
+		<br><br><fieldset style="width:620px;">
+		<legend><strong>I am mostly:</strong> </legend>
+		<input name="question_3" type="radio" value="5,7,11,12,13"> Creative <br>
+		<input name="question_3" type="radio" value="1,2,6,8"> Patient <br>
+		<input name="question_3" type="radio" value="8,9,10,12"> Outgoing <br>
+		<input name="question_3" type="radio" value="1,2,3,4,6,8,9,10,14"> Detail Oriented <br>
+		</fieldset>
+		
+		<!-- Question 4 -->
+		<br><br><fieldset style="width:620px;">
+		<legend><strong>My favorite subject is:</strong> </legend>
+		<input name="question_4" type="radio" value="1,2,6"> Mathematics <br>
+		<input name="question_4" type="radio" value="3,4,5,11,12,13,14"> English/Language <br>
+		<input name="question_4" type="radio" value="7,12,13"> Art <br>
+		<input name="question_4" type="radio" value="1,2,6"> Science <br>
+		</fieldset>
+		
+		<!-- Question 5 -->
+		<br><br><fieldset style="width:620px;">
+		<legend><strong>When I'm interested in a topic, I prefer to:</strong> </legend>
+		<input name="question_5" type="radio" value="5"> Listen to podcasts <br> 
+		<input name="question_5" type="radio" value="12"> Scroll through social media to find opinions <br> 
+		<input name="question_5" type="radio" value="4"> Read articles and other online sources  <br> 
+		<input name="question_5" type="radio" value="3"> Do my research and find exact, credible sources <br>
+		</fieldset>
+		
+		<!-- Question 6 -->
+		<br><br><fieldset style="width:620px;">
+		<legend><strong>Working on a project, I prefer to be:</strong> </legend>
+		<input name="question_6" type="radio" value="9"> The leader <br> 
+		<input name="question_6" type="radio" value="4"> The note-taker <br> 
+		<input name="question_6" type="radio" value="3,13"> The researcher <br> 
+		<input name="question_6" type="radio" value="10"> The task manager <br>
+		</fieldset>
+		
+		<!-- Question 7 -->
+		<br><br><fieldset style="width:620px;">
+		<legend><strong>I am more inclined to:</strong> </legend>
+		<input name="question_7" type="radio" value="3,4,5,9,12"> Work with others <br> 
+		<input name="question_7" type="radio" value="1,2"> Just focus on solving the problem <br> 
+		<input name="question_7" type="radio" value="12,14"> Make connections/network <br> 
+		<input name="question_7" type="radio" value="6,7,8,10,11"> Identify all the details of a task <br>
+		</fieldset>
+		
+		<!-- Question 8 -->
+		<br><br><fieldset style="width:620px;">
+		<legend><strong>My friends would describe me as:</strong> </legend>
+		<input name="question_8" type="radio" value="6"> Analytical <br> 
+		<input name="question_8" type="radio" value="7"> Artistic <br> 
+		<input name="question_8" type="radio" value="1,2"> A Computer 'Geek' <br> 
+		<input name="question_8" type="radio" value="12"> A Social Media Guru <br>
+		</fieldset>
+		
+		<!-- Question 9 -->
+		<br><br><fieldset style="width:620px;">
+		<legend><strong>My idea of helping contribute to the Veteran community is:</strong> </legend>
+		<input name="question_9" type="radio" value="11"> Making sure all resources are accessible and understandable <br> 
+		<input name="question_9" type="radio" value="1"> Altering web pages or web content to help make the journey online easier <br> 
+		<input name="question_9" type="radio" value="2"> Enhancing online security in order for all veteran information to remain safe <br> 
+		<input name="question_9" type="radio" value="3,4,5"> Creating informative pieces to keep veterans updated and informed <br> 
+		<input name="question_9" type="radio" value="6,12"> Monitoring and creating social media posts for the benefit of the VA <br> 
+		<input name="question_9" type="radio" value="7,13"> Designing graphics/finding images to enhance VA information <br> 
+		<input name="question_9" type="radio" value="14"> Working on specialized projects that are specific to veterans and their stories <br>
+		</fieldset>
+		
+		<!-- Question 10 -->
+		<br><br><fieldset style="width:620px;">
+		<legend><strong>I would rather:</strong> </legend>
+		<input name="question_10" type="radio" value="1"> Code <br> 
+		<input name="question_10" type="radio" value="6"> Analyze data <br> 
+		<input name="question_10" type="radio" value="2"> Enhance web security <br> 
+		<input name="question_10" type="radio" value="1"> Update web content <br> 
+		<input name="question_10" type="radio" value="5,7,10,11,13"> None, I don't have this kind of experience. <br>
+		</fieldset>
+		
+		<!-- Question 11 -->
+		<br><br><fieldset style="width:620px;">
+		<legend><strong>The project that interests me the most is:</strong> </legend>
+		<input name="question_11" type="radio" value="4,5"> Working on a blog/podcast <br> 
+		<input name="question_11" type="radio" value="14"> Interviewing veterans for personal stories <br> 
+		<input name="question_11" type="radio" value="12"> Posting veteran specific content on Twitter, Instagram, or Facebook <br> 
+		<input name="question_11" type="radio" value="11"> Transcribing images, videos, and other content to assist with veteran disabilities <br>
+		</fieldset>
+		
+		<!-- Question 12 -->
+		<br><br><fieldset style="width:620px;">
+		<legend><strong>When asked to write an informational piece, my favorite part of the process is:</strong> </legend>
+		<input name="question_12" type="radio" value="4"> Editing <br> 
+		<input name="question_12" type="radio" value="3,13"> Researching <br> 
+		<input name="question_12" type="radio" value="5,14"> Interviewing others for information <br> 
+		<input name="question_12" type="radio" value="11"> Designing the final output in a format everyone can understand <br> 
+		<input name="question_12" type="radio" value="1,2,6"> None, writing is not my forte. <br>
+		</fieldset>
+		
+		<!-- Question 13 -->
+		<br><br><fieldset style="width:620px;">
+		<legend><strong>I feel I am best at:</strong> </legend>
+		<input name="question_13" type="radio" value="10"> Assigning projects and tasks to groups <br> 
+		<input name="question_13" type="radio" value="9"> Leading a team <br> 
+		<input name="question_13" type="radio" value="8"> Providing assistance and resources for everyone <br> 
+		<input name="question_13" type="radio" value="1,2,3,4,5,6,7,11,12,13,14"> None of the above <br>
+		</fieldset>
+		<br>
+		<br>
+		<div class="buttons">
+			<br /><br /> <INPUT TYPE="reset" value="Reset">
+						 <INPUT TYPE="submit" value="Submit">
+		</div>
+		</form>
+		<br>
+		<br>         
+</body>
+</html>
